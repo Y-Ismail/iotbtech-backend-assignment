@@ -1,0 +1,17 @@
+import winston from "winston";
+export const logger: winston.Logger = winston.createLogger({
+    level:"info",
+    format: winston.format.combine(
+        winston.format.timestamp(),
+        winston.format.printf(({timestamp,level,message}) => {
+            return `${timestamp} [${level.toUpperCase()}] ${message}`
+        })
+    ),
+    transports: [
+        new winston.transports.Console(),
+        new winston.transports.File({filename:'logs/app.log'}),
+    ]
+});
+
+logger.info('Server started on port')
+logger.error('Something broke')
