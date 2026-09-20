@@ -19,7 +19,7 @@ The 2 outputs differ because the one with slice removes the working directory an
 
 __2.__ This is used so as to get all CLI arguments used after the name of the working directory
 
-__3.__ 
+__3.__  
 
 ```javascript
 console.log(Buffer.from("مرحبا")); // 10
@@ -87,12 +87,14 @@ M1 out runs last because next() passes execution to the next handler but still k
 
 __16.__ The client sees a loading spinner that never stops. The terminal processes the middleware without moving to the next handler. Express cannot guess the middleware is done because it does not know ones intent and never automatically calls next()
 
-__17.__ 
+__17.__ Express treats B as an error handler because the signature it uses to recognize an error hanlder is that it has 4 parameters.
+If B is cleaned up to (err,req,res) it would treat is a normal middleware with err as req, req as res, and res as next()
 
-__18.__ 
+__18.__  next() runs the next regualar middleware while next(err) skips everything regular and jumps straight to the global error handler.
+next(err) skips the remaining regualar middleware
 
 __19.__ 
 
-__20.__ 
+__20.__ In express 4 a rejected async error is not caught automatically. In express 5 an async rejection in handler is auto caught. The two pattern that can fix this in express 4 is by using try/catch and using an asyncHandler. To check express version run `npm ls express`
 
-__21.__
+__21.__ 

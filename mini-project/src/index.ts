@@ -14,6 +14,9 @@ loadProducts()
 app.use(requestLogger)
 app.use(express.json())
 app.use("/api/products", Productrouter)
+app.get('/boom', (req,res) => {
+    throw new Error("Kabooms!")
+})
 app.use(errorHandler)
 app.use(notFoundHandler)
 
